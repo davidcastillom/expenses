@@ -1,0 +1,25 @@
+{% extends "registro/base.html"%}
+{% block content %}
+    <div>
+        <p1>Tarjetas de Crédito</p1>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'tarjeta_credito_crear' %}>Añadir</a>
+
+    </div>
+<!--
+    -->
+    {% for tc in tcs %}
+
+        <article class="media content-section">
+
+          <div class="media-body">
+
+           <h2><a class="article-title" href={% url 'tarjeta_credito_detail' tc.numerotc %}>{{ tc.nombretc }}</a></h2>
+            <p class="article-content">{{ tc.numerotc }}</p>
+            <p class="article-content">{{ tc.banco }}</p>
+            <p class="article-content">{{ tc.deuda_total }}</p>
+
+          </div>
+        </article>
+    {% endfor %}
+
+{% endblock content %}

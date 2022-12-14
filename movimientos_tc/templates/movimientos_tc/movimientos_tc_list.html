@@ -1,0 +1,48 @@
+{% extends "registro/base.html"%}
+{% block content %}
+<div>
+    <p1>Movimientos para Tarjeta de Credito:</p1>
+    {% if movtc.0.numerotc %}
+        <p1>{{ movtc.0.numerotc }}</p1>
+    {% else %}
+        <p1> {{ Tarjeta }}</p1>
+    {% endif %}
+</div>
+<div>
+    {% if movtc.0.numerotc %}
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'movimientos_tc_crear' movtc.0.numerotc %}>Añadir</a>
+    {% else %}
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'movimientos_tc_crear' Tarjeta %}>Añadir</a>
+    {% endif %}
+</div>
+
+<div class="container">
+    <h2>Movimientos </h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Descripcion</th>
+                <th>Fecha</th>
+                <th>Debe</th>
+                <th>Haber</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movimientos in movtc %}
+
+                <tr>
+
+                    <td><a href={% url 'movimientos_tc_detail' movimientos.auto_increment_id %}>{{ movimientos.descripcion }}</a></td>
+                    <td>{{ movimientos.fecha }}</td>
+                    {% if movimientos.monto >= 0 %}
+                        <td>{{ movimientos.monto }}</td>
+                        <td>0.00</td>
+                    {% else %}
+                        <td>0.00</td>
+                        <td>{{ movimientos.monto }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends "registro/base.html"%}
+{% block content %}
+  <article class="media content-section">
+
+    <div class="media-body">
+
+      <div class="article-metadata">
+
+
+            <div>
+               <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'tipo_update' object.tipo %}>Update</a>
+               <a class="btn btn-danger btn-sm mt-1 mb-1" href={% url 'tipo_delete' object.tipo %}>Borrar</a>
+            </div>
+
+      </div>
+      <h2 class="article-title">{{ object.tipo }}</h2>
+      <p class="article-content">Descripcion {{ object.descripcion }}</p>
+      <p class="article-content">Tipo de Busqueda: {{ object.busqueda }}</p>
+    </div>
+  </article>
+
+{% endblock content %}

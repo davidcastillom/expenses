@@ -1,0 +1,31 @@
+{% extends "registro/base.html"%}
+{% block content %}
+    <div>
+        <p1>Entidades Crediticias</p1>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'entidades_crear' %}>Añadir</a>
+
+    </div>
+<!--
+    -->
+    {% for entid in entidades %}
+
+        <article class="media content-section">
+
+          <div class="media-body">
+             <div class="row">
+                <div class="col-sm-5" style="background-color:lavender;">
+                    <h2><a class="article-title" href={% url 'entidades_detail' entid.cod_entidad %}>{{ entid.cod_entidad  }}</a></h2>
+                    <p class="article-content">{{ entid.entidad }}</p>
+                    <p class="article-content">{{ entid.clave }}</p>
+                </div>
+                <div class="col-sm-7" style="background-color:lavenderblush;">
+                    <div class="media">
+                        <img class="rounded" alt="Cinque Terre" width="400" height="120" src="{{ entid.image.url }}">
+                    </div>
+                </div>
+             <div>
+          </div>
+        </article>
+    {% endfor %}
+
+{% endblock content %}

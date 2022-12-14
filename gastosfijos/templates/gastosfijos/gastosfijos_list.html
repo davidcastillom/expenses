@@ -1,0 +1,36 @@
+{% extends "registro/base.html"%}
+{% block content %}
+    <div>
+        <p1>Gastos Fijos</p1>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'gastos_crear' %}>Añadir</a>
+
+    </div>
+
+    {% for gasto in gastos %}
+
+        <article class="media content-section">
+
+          <div class="media-body">
+
+
+
+
+            <div class="row">
+               <div class="col-sm-4" style="background-color:lavender;">
+                   <h3><a class="article-title" href={% url 'gastos_detail' gasto.clave %}>Clave Gasto: {{ gasto.clave }}</a></h3>
+               </div>
+               <div class="col-sm-8" style="background-color:lavenderblush;">
+                  <p class="article-content">Descripcion: {{ gasto.descripcion }}</p>
+                  <p class="article-content">Quincena a reflejar: {{ gasto.quincena }}</p>
+                  <p class="article-content">Tipo de Busqueda: {{ gasto.tipo }}</p>
+               </div>
+            <div>
+
+
+
+
+          </div>
+        </article>
+    {% endfor %}
+
+{% endblock content %}

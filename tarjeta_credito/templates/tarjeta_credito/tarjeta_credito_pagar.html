@@ -1,0 +1,18 @@
+{% extends "registro/base.html"%}
+{% block content%}
+    <div class="content-section">
+        <legend class="border-bottom mb-">Pago de Tarjeta de Credito</legend>
+        <p class="article-content">Nro Tarjeta : {{ Numero_tc }}</p>
+        <p class="article-content">Tarjeta : {{ Nombre_tc }}</p>
+        <p class="article-content">Monto minimo: {{ PagoMinimo }}</p>
+        <p class="article-content">Monto proyectado: {{ PagoProyectado }}</p>
+
+        <form action="" method="POST", enctype="multipart/form-data">
+            {% csrf_token %}
+                    {{ form.as_p }}
+            <div class="form-group">
+                <button class="btnbtn-outline-info" type="submit">Pagar</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

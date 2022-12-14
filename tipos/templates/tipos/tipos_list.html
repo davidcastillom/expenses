@@ -1,0 +1,22 @@
+{% extends "registro/base.html"%}
+{% block content %}
+    <div>
+        <p1>Tipos de Deudas</p1>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'tipo_crear' %}>Añadir</a>
+
+    </div>
+
+    {% for tipo in tipos %}
+
+        <article class="media content-section">
+
+          <div class="media-body">
+
+            <h2><a class="article-title" href={% url 'tipo_detail' tipo.tipo %}>{{ tipo.tipo }}</a></h2>
+            <p class="article-content">{{ tipo.descripcion }}</p>
+
+          </div>
+        </article>
+    {% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends "registro/base.html"%}
+{% block content %}
+    <div>
+        <p1>Creditos</p1>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'creditos_crear' %}>Añadir</a>
+
+    </div>
+<!--
+    -->
+    {% for credito in creditos %}
+
+        <article class="media content-section">
+          <div class="media-body">
+             <div class="row">
+                <div class="col-sm-5" style="background-color:lavender;">
+                    <h3><a class="article-title" href={% url 'creditos_detail' credito.cod_credito %}>{{ credito.articulo   }}</a></h3>
+                    <p class="article-content">Entidad: {{ credito.cod_entidad }}</p>
+                    <p class="article-content">{{ credito.cod_credito }}</p>
+                </div>
+                <div class="col-sm-7" style="background-color:lavenderblush;">
+                    <div class="media">
+                        <img class="rounded" alt="Cinque Terre" width="200" height="120" src="{{ credito.image.url }}">
+                    </div>
+                </div>
+             <div>
+          </div>
+        </article>
+    {% endfor %}
+
+{% endblock content %}

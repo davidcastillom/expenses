@@ -1,0 +1,70 @@
+{% extends "registro/base.html"%}
+{% load humanize %}
+{% block content %}
+<style media="screen">
+    td {
+  padding: 10px;
+  text-align: right;
+}
+#derecha {
+    text-align: right;
+}
+</style>
+{% if user.is_authenticated  %}
+
+
+        <table class="table">
+            <thead>
+              <tr>
+                 <th> </th>
+                 <th>{{ Titulos.t1 }}</th>
+                 <th> </th>
+                 <th>{{ Titulos.t2 }}</th>
+                 <th> </th>
+             </tr>
+             <tr>
+                <th>Sueldo </th>
+                <th id="derecha">{{Sueldo.sQuinc1|floatformat:2|intcomma }} </th>
+                <th id="derecha">{{0.00|floatformat:2|intcomma }}</th>
+                <th id="derecha">{{Sueldo.sQuinc2|floatformat:2|intcomma }} </th>
+                <th id="derecha">{{0.00|floatformat:2|intcomma }}</th>
+
+                <th> </th>
+            </tr>
+                <th>Queda </th>
+                <th id="derecha">{{Queda.q1a|floatformat:2|intcomma }} </th>
+                <th id="derecha">{{0.00|floatformat:2|intcomma }}</th>
+                <th id="derecha">{{Queda.q2a|floatformat:2|intcomma }} </th>
+                <th id="derecha">{{0.00|floatformat:2|intcomma }}</th>
+
+             <tr>
+                <th>Totales </th>
+                <th id="derecha">{{Totales.q1a|floatformat:2|intcomma }} </th>
+                <th id="derecha">{{Totales.q1p|floatformat:2|intcomma }}</th>
+                <th id="derecha">{{Totales.q2a|floatformat:2|intcomma }} </th>
+                <th id="derecha">{{Totales.q2p|floatformat:2|intcomma }}</th>
+
+                <th> </th>
+            </tr>
+
+           </thead>
+           <tbody>
+
+            {% for item in items %}
+                <tr>
+
+                    <td> {{ item.titulo }} </td>
+                    <td> {{ item.Q1_prev|floatformat:2|intcomma }} </td>
+                    <td> {{ item.Q1_pago|floatformat:2|intcomma }} </td>
+                    <td> {{ item.Q2_prev|floatformat:2|intcomma }} </td>
+                    <td> {{ item.Q2_pago|floatformat:2|intcomma }} </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+
+          </table>
+{% else %}
+    <p1>Usuario no Autenticado</p1>
+{% endif %}
+{% endblock content %}

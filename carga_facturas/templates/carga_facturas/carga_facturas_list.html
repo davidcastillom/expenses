@@ -1,0 +1,29 @@
+{% extends "registro/base.html"%}
+{% block content %}
+    <div>
+        <p1>Carga de Facturas de Servicios</p1>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'carga_facturas_crear' %}>Añadir</a>
+
+    </div>
+
+    {% for factura in facturas %}
+
+        <article class="media content-section">
+
+          <div class="media-body">
+
+            <h2><a class="article-title" href={% url 'carga_facturas_detail' factura.factura %}>{{ factura.clave }}</a>
+            </h2>
+            <p class="article-content">Fecha de la Factura: {{ factura.fecha }}</p>
+            <p class="article-content">Monto de la Factura: {{ factura.monto }}</p>
+            {% if factura.pagada == "1" %}
+                <p class="article-content">PAGADA</p>
+            {% else %}
+                <p class="article-content">PENDIENTE</p>
+            {% endif %}
+
+          </div>
+        </article>
+    {% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends "registro/base.html"%}
+{% block content %}
+  <article class="media content-section">
+
+    <div class="media-body">
+
+      <div class="article-metadata">
+
+
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'tarjeta_credito_update' object.numerotc %}>Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href={% url 'tarjeta_credito_delete' object.numerotc %}>Borrar</a>
+                <a class="btn btn-primary btn-sm mt-1 mb-1" href={% url 'tarjeta_credito_pagar' object.numerotc %}>Registrar pago</a>
+                <a class="btn btn-info btn-sm mt-1 mb-1" href={% url 'movimientostc_f' object.numerotc %}>Consultar Movimientos</a>
+                <a class="btn btn-dark btn-sm mt-1 mb-1" href="#">Recalcular</a>
+            </div>
+
+      </div>
+          <form enctype="multipart/form-data">
+              <div class="row">
+                  <div class="col-sm-5" style="background-color:lavender;">
+                      <h2 class="article-title">Banco: {{ object.banco }}</h2>
+                      <p class="article-content">Tarjeta : {{ object.nombretc }}</p>
+                      <p class="article-content">Numero de TC: {{ object.numerotc }}</p>
+                      <p class="article-content">Limite: {{ object.limite }}</p>
+                      <p class="article-content">Pago proyectado: {{ object.pago_proyectado }}</p>
+                      <p class="article-content">Pago Minimo: {{ object.pago_minimo }}</p>
+                      <p class="article-content">Deuda Total: {{ object.deuda_total }}</p>
+                  </div>
+
+                <div class="col-sm-7" style="background-color:lavenderblush;">
+                    <div class="media">
+                        <img class="rounded" alt="Cinque Terre" width="350" height="236" src="{{ object.image.url }}">
+                    </div>
+                </div>
+            </div>
+          </form>
+    </div>
+  </article>
+
+{% endblock content %}

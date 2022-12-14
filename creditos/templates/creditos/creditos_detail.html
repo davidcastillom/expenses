@@ -1,0 +1,81 @@
+{% extends "registro/base.html"%}
+{% block content %}
+  <article class="media content-section">
+
+    <div class="media-body">
+
+      <div class="article-metadata">
+
+
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'creditos_update' creditoDisplay.cod_credito %}>Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href={% url 'creditos_delete' creditoDisplay.cod_credito %}>Borrar</a>
+                <a class="btn btn-primary btn-sm mt-1 mb-1" href={% url 'creditos_pagar' creditoDisplay.cod_credito %}>Pagar cuota</a>
+            </div>
+
+      </div>
+          <form enctype="multipart/form-data">
+              <div class="row">
+                  <div class="col-sm-5" style="background-color:lavender;">
+                      <h2 class="article-title">Codigo: {{ creditoDisplay.cod_credito }}</h2>
+                      <p class="article-content">Articulo: {{ creditoDisplay.articulo}}</p>
+                      <p class="article-content">Fecha Compra: {{ creditoDisplay.fecha_compra}}</p>
+                      <p class="article-content">Costo Inicial: {{ creditoDisplay.costo_original}}</p>
+                      <p class="article-content">Deuda: {{ creditoDisplay.saldo_credito}}</p>
+                      <p class="article-content">Deuda de Contado: {{ creditoDisplay.capital}}</p>
+                  </div>
+
+                <div class="col-sm-7" style="background-color:lavenderblush;">
+                    <div class="media">
+                        <img class="rounded" alt="Cinque Terre" width="350" height="236" src="{{ creditoDisplay.image.url }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <h2>Movimientos </h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+
+                                <th>Numero de Cuota</th>
+                                <th>Mes</th>
+                                <th>Año</th>
+                                <th>Monto Cuota</th>
+                                <th>Intereses</th>
+                                <th>IVA </th>
+                                <th>Amortizacion</th>
+                                <th>Deuda</th>
+                                <th>Status</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for movimientos in detalleDisplay %}
+
+                                <tr>
+
+
+                                    <td>{{ movimientos.numero_cuota }}</td>
+                                    <td>{{ movimientos.mes }}</td>
+                                    <td>{{ movimientos.ano }}</td>
+                                    <td>{{ movimientos.monto_cuota }}</td>
+                                    <td>{{ movimientos.intereses }}</td>
+                                    <td>{{ movimientos.iva_intereses }}</td>
+                                    <td>{{ movimientos.amortiza }}</td>
+                                    <td>{{ movimientos.capital }}</td>
+
+                                    {% if movimientos.pagada == '1' %}
+                                         <td>Pagada</td>
+                                    {% else %}
+                                         <td>Pendiente</td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          </form>
+    </div>
+  </article>
+
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends "registro/base.html"%}
+{% block content %}
+  <article class="media content-section">
+
+    <div class="media-body">
+
+      <div class="article-metadata">
+
+
+            <div>
+               <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'movimientos_tc_update' object.auto_increment_id %}>Update</a>
+               <a class="btn btn-danger btn-sm mt-1 mb-1" href={% url 'movimientos_tc_delete' object.auto_increment_id %}>Borrar</a>
+            </div>
+
+      </div>
+      <h2 class="article-title">Tarjeta Nro: {{ object.numerotc }} {{ object.nombretc }}</h2>
+      <p class="article-content">Tipo Movimiento : {{ object.tipo_mov }}</p>
+      <p class="article-content">Descripcion : {{ object.descripcion }}</p>
+      <p class="article-content">Fecha: {{ object.fecha }}</p>
+      <p class="article-content">Monto: {{ object.monto }}</p>
+    </div>
+  </article>
+
+{% endblock content %}

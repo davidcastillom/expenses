@@ -1,0 +1,64 @@
+{% extends "registro/base.html"%}
+{% block content %}
+  <article class="media content-section">
+
+    <div class="media-body">
+
+      <div class="article-metadata">
+
+
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href={% url 'entidades_update' entidadDisplay.cod_entidad %}>Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href={% url 'entidades_delete' entidadDisplay.cod_entidad %}>Borrar</a>
+            </div>
+
+      </div>
+          <form enctype="multipart/form-data">
+              <div class="row">
+                  <div class="col-sm-5" style="background-color:lavender;">
+                      <h2 class="article-title">Codigo: {{ entidadDisplay.cod_entidad }}</h2>
+                      <p class="article-content">Nombre: {{ entidadDisplay.entidad }}</p>
+                      <p class="article-content">Tipo: {{ entidadDisplay.clave }}</p>
+                  </div>
+
+                <div class="col-sm-7" style="background-color:lavenderblush;">
+                    <div class="media">
+                        <img class="rounded" alt="Cinque Terre" width="175" height="118" src="{{ entidadDisplay.image.url }}">
+                    </div>
+                </div>
+            </div>
+                  <div class="row">
+                      <h2>Creditos </h2>
+                      <table class="table table-bordered">
+                          <thead>
+                              <tr>
+                                  <th>Codigo de Credito</th>
+                                  <th>Articulo</th>
+                                  <th>Costo Original</th>
+                                  <th>Deuda a Credito</th>
+                                  <th>Deuda a Capital</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {% for movimientos in creditoDisplay %}
+                                  <tr>
+                                      <td>{{ movimientos.cod_credito }}</td>
+                                      <td>{{ movimientos.articulo }}</td>
+                                      <td>{{ movimientos.costo_original }}</td>
+                                      <td>{{ movimientos.saldo_credito }}</td>
+                                      <td>{{ movimientos.capital }}</td>
+                                  </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+
+
+
+
+          </form>
+    </div>
+  </article>
+
+{% endblock content %}
