@@ -1,2 +1,2 @@
 # gastos
-Primer intento de desarrollo python/Django
+Personal application to control monthly expenses using Python/Django
